@@ -15,7 +15,8 @@
   *
 
 ```
-select blog[1],blog[2],blog[3],blog[4],
-CASE WHEN LOCATE(':',blog[5]) > 0 THEN '2018' ELSE blog[5] END,
-blog[6] from (select SPLIT(REGEXP_REPLACE(columns[0],'\s+','|'),'|') as blog from dfs.lfs.`siab_branches.csv`)
+select blog[2] as updated_by ,blog[3] as `month` ,blog[4] as `day`,
+CASE WHEN LOCATE(':',blog[5]) > 0 THEN '2018' ELSE blog[5] END as `year`,
+REGEXP_REPLACE(blog[6],'/','')
+as branch_name from (select SPLIT(REGEXP_REPLACE(columns[0],'\s+','|'),'|') as blog from dfs.lfs.`siab_branches.csv`)
 ```

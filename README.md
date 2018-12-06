@@ -15,5 +15,7 @@
   *
 
 ```
-select blog[1],blog[2] as commiter,blog[3],blog[4],blog[5],blog[6] from (select SPLIT(REGEXP_REPLACE(columns[0],'\s+','|'),'|') as blog from dfs.lfs.`branches.csv`)
+select blog[1],blog[2],blog[3],blog[4],
+CASE WHEN LOCATE(':',blog[5]) > 0 THEN '2018' ELSE blog[5] END,
+blog[6] from (select SPLIT(REGEXP_REPLACE(columns[0],'\s+','|'),'|') as blog from dfs.lfs.`siab_branches.csv`)
 ```

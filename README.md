@@ -13,3 +13,7 @@
   * HBase table.
   * Hive
   *
+
+```
+select blog[1],blog[2] as commiter,blog[3],blog[4],blog[5],blog[6] from (select SPLIT(REGEXP_REPLACE(columns[0],'\s+','|'),'|') as blog from dfs.lfs.`branches.csv`)
+```

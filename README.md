@@ -13,7 +13,7 @@
   * HBase table.
   * Hive
   
-#### Notes
+#### Parsing Text Files
 * extractHeader property is false by default, which means you get all data from csv file as an array. which can extracted by columns[index]
 * while enabling extractHeader property, set skipFirstLine = true.
 * use .csvh format for reading cvs files if you want to include first line as header names.
@@ -26,6 +26,9 @@
 * To convert string into dates use
  * To_date
  * To_Timestamp
+ 
+ #### Parsing JSON Files
+ 
 ```
 select blog[2] as updated_by ,blog[3] as `month` ,blog[4] as `day`,
 CASE WHEN LOCATE(':',blog[5]) > 0 THEN '2018' ELSE blog[5] END as `year`,

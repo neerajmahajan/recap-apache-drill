@@ -12,8 +12,20 @@
   * Parquet files.
   * HBase table.
   * Hive
-  *
-
+  
+#### Notes
+* extractHeader property is false by default, which means you get all data from csv file as an array. which can extracted by columns[index]
+* while enabling extractHeader property, set skipFirstLine = true.
+* use .csvh format for reading cvs files if you want to include first line as header names.
+* While querying text files, convert the columnn data type to integer if using numeric functions like AVG,SUM etc. otherwise drill will gives wiered error.
+* If using keywords for column name, use back ticks. eg `year`, otherwise drill will give errors.
+* Drill will infer data type from relational databases/ json files, but for text files everything is string.
+* To convert string into numeric types use cast function
+ * eg CAST (columns[0] as float)
+ * See To_Number
+* To convert string into dates use
+ * To_date
+ * To_Timestamp
 ```
 select blog[2] as updated_by ,blog[3] as `month` ,blog[4] as `day`,
 CASE WHEN LOCATE(':',blog[5]) > 0 THEN '2018' ELSE blog[5] END as `year`,
